@@ -12,9 +12,13 @@ class Banco:
         nome = input("Nome do cliente: ")
         senha = input("Senha (sem espaços): ")
 
-        if " " in senha:
-            print("Erro: A senha não pode conter espaços.")
-            return
+        while " " in senha:
+            print("A senha não pode conter espaços.")
+            senha = input("Senha (sem espaços): ")
+        
+        while not nome.replace(" ", "").isalpha():
+            print("O nome só pode conter letras e espaços.")
+            nome = input("Nome do cliente: ")
 
         try:
             saldo = float(input("Saldo inicial: R$ "))
@@ -55,8 +59,8 @@ class Banco:
         )
 
         if destino:
-            print(f"\nBem-vindo(a), {destino.titular}!")
+            print(f"\nBem-vindo(a), {destino.nome_cliente}!")
             return destino
 
-        print("Conta ou senha inválida.")
+        print("Número da conta ou senha inválida.")
         return None
